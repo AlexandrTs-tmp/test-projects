@@ -1,0 +1,41 @@
+#define ZERO        0xFF4AB5
+#define ONE         0xFF6897
+#define TWO         0xFF9867
+#define THREE       0xFFB04F
+#define FOUR        0xFF30CF
+#define FIVE        0xFF18E7
+#define SIX         0xFF7A85
+#define SEVEN       0xFF10EF
+#define EIGHT       0xFF38C7
+#define NINE        0xFF5AA5
+
+#define SENSOR_PIN    11
+#define FAN_PIN       8
+
+#define CONVERT       0
+
+typedef int MyInt;
+typedef MyInt (*Convert)(MyInt);
+
+class Converter {
+  private:
+  Convert convert;
+  public:
+  
+};
+
+Converter converter;
+
+void setup() {
+  pinMode(SENSOR_PIN, OUTPUT);
+  pinMode(FAN_PIN, OUTPUT);
+  converter[] = [](MyInt input_value) {
+    MyInt output_value;
+    
+    return output_value;
+  }
+}
+
+void loop() {
+  fanAI(converter(sensor()));
+}
