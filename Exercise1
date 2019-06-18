@@ -1,0 +1,67 @@
+typedef int SystemResult;
+typedef int FlagRegisterData;
+typedef int FlagValue;
+typedef int FlagIndex;
+typedef int Mask;
+
+#define REGISTER_CAPACITY 10
+
+class Sensor {
+  
+};
+
+class Actuator {
+  
+};
+
+class MySystem {
+public:
+  SystemResult operator()() {
+    SystemResult result;
+    return result;
+  }
+};
+
+class Connection {
+};
+
+class FlagRegister {
+private:
+  FlagRegisterData registerData[REGISTER_CAPACITY];
+public:
+  class Flag {
+    private:
+    public:
+    FlagRegister* flagRegister;
+    FlagIndex granularity;
+    FlagIndex id;
+    Flag& operator=(FlagValue newValue) {
+      Mask mask;
+      mask = 1 << id % granularity;
+      flagRegister->data(id) = (flagRegister->data(id) & mask) | (flagRegister->data(id));
+      return *this;
+    }
+  };
+  Flag& operator[](FlagIndex index) {
+    static Flag flag;
+    flag.flagRegister = this;
+    flag.granularity = 8;
+    flag.id = index;
+    return flag; 
+  }
+  FlagRegisterData& data(FlagIndex index) {
+    return registerData[index / 8];
+  }
+};
+
+MySystem systemObject;
+
+void setup() {
+  // put your setup code here, to run once:
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  systemObject();
+}
